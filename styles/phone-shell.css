@@ -1,49 +1,44 @@
-/* ── 1. 彻底禁用全局横向滚动，实现完美固定 ── */
-html, body, .app-root {
-  width: 100vw !important;
-  height: 100lvh !important;
-  overflow-x: hidden !important;
-  position: relative !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* ── 2. 重置手机壳全层级容器，强制 100% 自适应宽度 ── */
-.phone-shell-wrap,
-.phone-case,
-.phone-frame,
-.phone-shell {
-  --phone-screen-width: 100vw !important;
-  --phone-screen-height: 100lvh !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
-  height: 100lvh !important;
-  max-height: 100lvh !important;
-  margin: 0 !important;
+/* ── 1. 彻底隐藏外壳与黑边 ── */
+.phone-case, .phone-frame {
   padding: 0 !important;
   border: none !important;
-  border-radius: 0 !important;
   background: transparent !important;
   box-shadow: none !important;
-  transform: none !important;
 }
-
-/* ── 3. 隐藏手机边框按键与高光 ── */
 .phone-case::before, .phone-case::after,
-.phone-frame::before, .phone-frame::after,
-.phone-shell::before {
+.phone-frame::before, .phone-frame::after {
   display: none !important;
 }
 
-/* ── 4. 强制桌面工作区与图标网格自适应屏幕宽度 ── */
-.phone-workspace,
-.phone-swipe-layer,
-.icon-grid {
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
+/* ── 2. 居中原版比例画布，并等比例放大填满真实屏幕 ── */
+.app-root {
+  width: 100vw !important;
+  height: 100lvh !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden !important;
 }
 
+.phone-shell-wrap {
+  /* 恢复作者原本设计的视口比例 */
+  --phone-screen-width: 390px !important;
+  --phone-screen-height: 844px !important;
+  width: var(--phone-screen-width) !important;
+  height: var(--phone-screen-height) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  
+  /* 关键：按你真实的手机屏幕大小，等比例自适应缩放 */
+  transform-origin: center center !important;
+  transform: scale(calc(100vw / 390)) !important;
+}
+
+.phone-shell {
+  width: 390px !important;
+  height: 844px !important;
+  border-radius: 0 !important;
+}
 /* ── Phone shell ── */
 
 .phone-shell-wrap {
