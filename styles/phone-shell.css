@@ -10,27 +10,36 @@
   display: none !important;
 }
 
-/* ── 2. 强制满屏居中，按最大比例微超额放大无缝铺满 ── */
-.app-root {
+/* ── 2. 根容器锁定，背景色贴合 ── */
+html, body, .app-root {
   width: 100vw !important;
   height: 100lvh !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
   overflow: hidden !important;
   background: var(--c-page-body-bg) !important;
+  position: relative !important;
 }
 
+/* ── 3. 绝对定位居中 + 彻底清空 JS 的动态偏移 ── */
 .phone-shell-wrap {
   --phone-screen-width: 390px !important;
   --phone-screen-height: 844px !important;
   width: var(--phone-screen-width) !important;
   height: var(--phone-screen-height) !important;
+  
+  /* 强制绝对定位到正中央 */
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  
+  /* 彻底清空原项目 JS 注入的 margin 和 transform 偏移量 */
   margin: 0 !important;
+  margin-top: 0 !important;
   padding: 0 !important;
   
-  transform-origin: center center !important;
-  transform: scale(calc(max(calc(100vw / 390), calc(100lvh / 844)) + 0.05)) !important;
+  /* 结合绝对居中 (-50%, -50%) + 稍微调大放大系数 (+ 0.1)，把四周死角彻底压实 */
+  transform: translate(-50%, -50%) scale(calc(max(calc(100vw / 390), calc(100lvh / 844)) + 0.1)) !important;
 }
 
 .phone-shell {
