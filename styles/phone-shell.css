@@ -29,9 +29,12 @@
   margin: 0 !important;
   padding: 0 !important;
   
-  /* 关键点：以底部为基准放大，安全系数抬到 0.15 */
-  transform-origin: center bottom !important;
-  transform: scale(calc(max(calc(100vw / 390), calc(100lvh / 844)) + 0.15)) !important;
+  /* 关键修改：X轴（宽）和Y轴（高）分别强行溢出 105%，彻底封死底部与四周缝隙 */
+  transform-origin: center center !important;
+  transform: scale(
+    calc((100vw / 390) * 1.05),
+    calc((100lvh / 844) * 1.05)
+  ) !important;
 }
 
 .phone-shell {
