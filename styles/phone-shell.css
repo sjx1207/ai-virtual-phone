@@ -1,43 +1,42 @@
-/* ── 1. 彻底隐藏外壳与黑边 ── */
-.phone-case, .phone-frame {
-  padding: 0 !important;
-  border: none !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-.phone-case::before, .phone-case::after,
-.phone-frame::before, .phone-frame::after {
-  display: none !important;
-}
+/* ── 手机浏览器全屏适配（不依赖固定比例） ── */
+@media (hover: none) and (pointer: coarse) {
 
-/* ── 2. 强制满屏居中，按最大比例（max）放大铺满 ── */
-.app-root {
-  width: 100vw !important;
-  height: 100lvh !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  overflow: hidden !important;
-  background: var(--c-page-body-bg) !important;
-}
+  .phone-case, .phone-frame {
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  .phone-case::before, .phone-case::after,
+  .phone-frame::before, .phone-frame::after {
+    display: none !important;
+  }
 
-.phone-shell-wrap {
-  --phone-screen-width: 390px !important;
-  --phone-screen-height: 844px !important;
-  width: var(--phone-screen-width) !important;
-  height: var(--phone-screen-height) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  
-  /* 取宽高中较大的放大倍数，保证上下左右完全无死角填满 */
-  transform-origin: center center !important;
-  transform: scale(max(calc(100vw / 390), calc(100lvh / 844))) !important;
-}
+  .app-root {
+    width: 100vw !important;
+    height: 100lvh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    overflow: hidden !important;
+    background: var(--c-page-body-bg) !important;
+  }
 
-.phone-shell {
-  width: 390px !important;
-  height: 844px !important;
-  border-radius: 0 !important;
+  .phone-shell-wrap {
+    --phone-screen-width: 100vw !important;
+    --phone-screen-height: 100lvh !important;
+    width: 100vw !important;
+    height: 100lvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .phone-shell {
+    width: 100vw !important;
+    height: 100lvh !important;
+    border-radius: 0 !important;
+  }
 }
 
 /* ── Phone shell ── */
