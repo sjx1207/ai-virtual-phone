@@ -10,7 +10,7 @@
   display: none !important;
 }
 
-/* ── 2. 居中原版比例画布，并等比例放大填满真实屏幕 ── */
+/* ── 2. 强制满屏居中，按最大比例（max）放大铺满 ── */
 .app-root {
   width: 100vw !important;
   height: 100lvh !important;
@@ -18,10 +18,10 @@
   justify-content: center !important;
   align-items: center !important;
   overflow: hidden !important;
+  background: var(--c-page-body-bg) !important;
 }
 
 .phone-shell-wrap {
-  /* 恢复作者原本设计的视口比例 */
   --phone-screen-width: 390px !important;
   --phone-screen-height: 844px !important;
   width: var(--phone-screen-width) !important;
@@ -29,9 +29,9 @@
   margin: 0 !important;
   padding: 0 !important;
   
-  /* 关键：按你真实的手机屏幕大小，等比例自适应缩放 */
+  /* 取宽高中较大的放大倍数，保证上下左右完全无死角填满 */
   transform-origin: center center !important;
-  transform: scale(calc(100vw / 390)) !important;
+  transform: scale(max(calc(100vw / 390), calc(100lvh / 844))) !important;
 }
 
 .phone-shell {
@@ -39,6 +39,7 @@
   height: 844px !important;
   border-radius: 0 !important;
 }
+
 /* ── Phone shell ── */
 
 .phone-shell-wrap {
