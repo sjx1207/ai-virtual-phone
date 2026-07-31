@@ -10,7 +10,7 @@
   display: none !important;
 }
 
-/* ── 2. 强制满屏居中 ── */
+/* ── 2. 强制满屏居中，按最大比例微超额放大无缝铺满 ── */
 .app-root {
   width: 100vw !important;
   height: 100lvh !important;
@@ -29,12 +29,8 @@
   margin: 0 !important;
   padding: 0 !important;
   
-  /* 关键修改：X轴（宽）和Y轴（高）分别强行溢出 105%，彻底封死底部与四周缝隙 */
   transform-origin: center center !important;
-  transform: scale(
-    calc((100vw / 390) * 1.05),
-    calc((100lvh / 844) * 1.05)
-  ) !important;
+  transform: scale(calc(max(calc(100vw / 390), calc(100lvh / 844)) + 0.1)) !important;
 }
 
 .phone-shell {
