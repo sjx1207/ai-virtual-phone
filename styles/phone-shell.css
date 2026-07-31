@@ -1,3 +1,15 @@
+/* 强制全局隐藏手机壳 */
+.phone-case, .phone-frame {
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.phone-case::before, .phone-case::after,
+.phone-frame::before, .phone-frame::after {
+  display: none !important;
+}
+
 /* ── Phone shell ── */
 
 .phone-shell-wrap {
