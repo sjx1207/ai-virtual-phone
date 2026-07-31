@@ -1202,3 +1202,97 @@
 .phone-shell[data-borders="on"] .icon-glyph-box {
   border: var(--desktop-outline-width, 1.5px) solid var(--desktop-outline-color, var(--user-border-color, #000)) !important;
 }
+
+/* ══════════════════════════════════════════
+   强制全屏适配（去除手机壳/黑边/圆角，等比放大铺满）
+   —— 不依赖媒体查询，任何设备/窗口尺寸都强制生效 ——
+   ══════════════════════════════════════════ */
+
+:root {
+  --phone-screen-width: 100vw !important;
+  --phone-screen-height: 100lvh !important;
+}
+
+html, body {
+  overflow: hidden !important;
+  width: 100% !important;
+  height: 100lvh !important;
+  background: var(--c-page-body-bg) !important;
+}
+
+.app-root {
+  width: 100vw !important;
+  height: 100lvh !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  overflow: hidden !important;
+  background: var(--c-page-body-bg) !important;
+}
+
+/* 去掉外壳金属框、黑色中框、边距、投影 */
+.phone-shell-wrap {
+  --phone-case-padding: 0px !important;
+  --phone-case-border-size: 0px !important;
+  --phone-frame-size: 0px !important;
+  --phone-screen-radius: 0px !important;
+  --phone-frame-radius: 0px !important;
+  --phone-case-radius: 0px !important;
+  width: var(--phone-screen-width) !important;
+  height: var(--phone-screen-height) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  transform-origin: top left !important;
+  transform: none !important;
+}
+
+.phone-shell-wrap .phone-case,
+.phone-shell-wrap .phone-frame {
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.phone-shell-wrap .phone-case::before,
+.phone-shell-wrap .phone-case::after,
+.phone-shell-wrap .phone-frame::before,
+.phone-shell-wrap .phone-frame::after {
+  display: none !important;
+}
+
+/* 屏幕本体：铺满、直角 */
+.phone-shell {
+  width: var(--phone-screen-width) !important;
+  height: var(--phone-screen-height) !important;
+  border-radius: 0 !important;
+}
+
+/* 开屏页（splash）同步铺满去圆角 */
+.app-root.splash-root {
+  width: 100vw !important;
+  height: 100lvh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  overflow: hidden !important;
+  background: var(--c-page-body-bg) !important;
+}
+
+.splash-shell-wrap {
+  width: var(--phone-screen-width) !important;
+  transform-origin: top left !important;
+  transform: none !important;
+}
+
+.splash-shell-wrap .phone-case,
+.splash-shell-wrap .phone-frame {
+  width: var(--phone-screen-width) !important;
+  border-radius: 0 !important;
+}
